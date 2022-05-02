@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The Code DireXtory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'StyleSheet.css')}}">
+</head>
+
+<body>
+  <h class="title">The <span class="LangTitle">{{pg_title}}</span> DireXtory</h>
+
+
+  <div class="usrDropdown">
+    <div class="dropdown">
+      <button class="dropbtn">{{usr}}</button>
+      <div class="dropdown-content">
+        <a href="{{url_for('details')}}">My Details</a>
+        <a href="#">My Profile</a>
+        <a href="#">My Projects</a>
+        <a href="#">Messages</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Navigation Bar -->
+  <div class="navbar">
+    <a href="{{url_for('userHome')}}">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Language
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="{{url_for('python')}}">Python</a>
+        <a href="{{url_for('WebLang')}}">web</a>
+        <a href="{{url_for('cpp')}}">C++</a>
+        <a href="{{url_for('Java')}}">Java</a>
+      </div>
+    </div>
+
+
+    <div class="dropdown">
+      <button class="dropbtn">Project by Subject
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="#">Cryptography</a>
+        <a href="#">Web development</a>
+        <a href="#">Neural Networks</a>
+        <a href="#">Libraries</a>
+      </div>
+    </div>
+    <!--End of Navigation bar-->
+
+    {% block content%}
+    {% endblock %}
+
+</body>
+
+</html>
+
+
+
+
+<!-- Idea for future development: Create a program which scans 
+folders for projects, inserts the project details into a 
+#database (SQL?), and then automatically adds the project to the
+correct page in the DireXtory -->

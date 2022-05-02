@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+      <head>
+            <title>The Code DireXtory</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename = 'StyleSheet.css')}}">
+      </head>
+
+      <body>
+            <h class = "title">The <span class="LangTitle">{{pg_title}}</span> DireXtory</h>
+            
+             
+            <div class="logintext">
+                  {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                              {% for msg in messages%}
+                                    <p style="color: red">{{msg}}</p>
+                              {% endfor %}
+                        {% endif %}
+                  {% endwith %}
+                  <form action = "#" method = "post">
+                        <a href = "{{url_for('addUser')}}">Don't have an account? Sign up!</a><br><br>
+                        <label  for="username">
+                              Username:
+                        </label>
+                        <input type="text" name="username">
+                        <br><br>
+                        <label for="password">
+                              Password:
+                        </label>
+                        <input type="password" name="password"><br>
+                        <input class = "loginSubmit" name="loginButton"type="submit" value = "Login">
+                  </form>
+            </div>
+
+      </body>
+
+      
+
+
+</html>

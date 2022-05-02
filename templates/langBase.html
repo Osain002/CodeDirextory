@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Code DireXtory</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'StyleSheet.css')}}">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+  <h class = "title">The <span class="LangTitle">{{pg_title}}</span> DireXtory</h>
+
+
+  <div class="usrDropdown">
+    <div class = "dropdown">
+      <button class="dropbtn">{{usr}}</button>
+      <div class="dropdown-content">
+        <a href="{{url_for('details')}}">My Details</a>
+        <a href="#">My Profile</a>
+        <a href="#">My Projects</a>
+        <a href="#">Messages</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Navigation Bar -->
+  <div class="navbar">
+    <a href="{{url_for('userHome')}}">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Language 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="{{url_for('python')}}">Python</a>
+        <a href="{{url_for('WebLang')}}">web</a>
+        <a href="{{url_for('cpp')}}">C++</a>
+        <a href="{{url_for('Java')}}">Java</a>
+      </div>
+    </div>
+    
+    
+    <div class="dropdown">
+      <button class="dropbtn">Project by Subject
+        <i class="fa fa-caret-down"></i>
+      </button>
+        <div class="dropdown-content">
+        <a href="#">Cryptography</a>
+        <a href="#">Web development</a>
+        <a href="#">Neural Networks</a>
+        <a href="#">Libraries</a>
+    </div>
+  </div>
+  <!--End of Navigation bar-->    
+
+  <div id="filtButton">
+    <button class="filterButton" onmouseover="showSideBar()">Filters</button>
+  </div>
+  
+  <!--side bar containing filters for the project list-->
+  <div id="sb" class="sidebar" onmouseleave="hideSideBar()">
+    <form class="filter_form">
+      <div>
+        <h3>Language</h3>
+        <label for="pyt">Python</label>
+        <input id="pyt" type="checkbox" value="1"><br>
+        <label for="c">C++</label>
+        <input id="c" type="checkbox"><br>
+        <label for="html">HTML</label>
+        <input id="html" type="checkbox"><br>
+        <label for="js">Javascript</label>
+        <input id="js" type="checkbox"><br>
+        <label for="css">CSS</label>
+        <input id="css" type="checkbox"><br><br>
+      </div>
+  
+      <div>
+        <h3>Program type</h3>
+        <label for="Cons">Console</label>
+        <input id="Cons" type="checkbox"><br>
+        <label for="gui">GUI</label>
+        <input id="gui" type="checkbox"><br>
+        <label for="math">Math</label>
+        <input id="math" type="checkbox"><br>
+        <label for="phys">Physics</label>
+        <input id="phys" type="checkbox"><br>
+        <label for="web">Web</label>
+        <input id="web" type="checkbox"><br>
+        <label for="aud">Audio</label>
+        <input id="aud" type="checkbox"><br>
+        <label for="game">Games</label>
+        <input id="game" type="checkbox"><br><br>
+  
+      </div>
+      <input style="position:fixed; left:2%;" type="submit">
+    </form>
+  </div>
+
+
+
+  <script>
+    function showSideBar(){
+      document.getElementById("filtButton").style.visibility = "hidden";
+      document.getElementById("sb").style.visibility = "visible";
+    }
+    function hideSideBar(){
+      document.getElementById("sb").style.visibility = "hidden";
+      document.getElementById("filtButton").style.visibility = "visible";
+    }
+  </script>
+
+<div class="listDiv">
+  <!--insert table of projects here-->
+  <table id="#Table" class="results">
+        <tr>
+              <th>
+                    Project Name
+              </th>
+              <th>
+                    Last Edited
+              </th>
+              <th>
+                    Languages
+              </th>
+        </tr>
+        {% for proj in tabData%}
+        <tr class = 'resTable' id='resTable{{proj.id}}' onclick='getData({{proj.id}})'>
+              <td>
+                    <p id='projName{{proj.id}}'>
+                          {{proj["Name"]}}
+                    </p>
+              </td>
+              <td>
+                    <p>
+                          ...
+                    </p>
+              </td>
+              <td>
+                    <p>
+                          {{proj["Lang"]}}
+                    </p>
+              </td>
+        </tr>
+        {% endfor %}
+  </table>
+</div>
+
+
+<!-- UPDATE THIS USING REACT-->
+<div class="ProjDisplay" id='tba'>
+  <a class='downloadButton' href='#'>Download</a> 
+  <h3 id="selProjTitle" ></h3>
+  <table id = "fileTable">   
+  </table>
+</div>
+<!--........................-->
+
+
+  {% block content%}
+  {% endblock %}
+</body>
+</html>

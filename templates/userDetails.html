@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+      
+      <div width = "200mm" class="logintext">
+            <form action = "#" method = "post">
+                  <label  for="username">
+                        Username:
+                  </label>
+                  <input style = "position:absolute; right:5px;" type="text" value = "{{username}}" name="username">
+                  <br><br>
+                  <label  style = margin:12%;" for="mail">
+                        Email:
+                  </label>
+                  <input style = "position:absolute; right: 5px;" type="text" value = "{{mail}}" name="userMail">
+                  <br><br>
+                  <label  for="password">
+                        Password:
+                  </label>
+                  <input style = "position:absolute; right: 5px; margin-bottom: 5px;" type="password" value = "{{password}}" name="password"><br>
+      
+                  <input style = "margin-top: 10px;" class = "loginSubmit" name="regButton" type="submit" value = "Update">
+            </form>
+      </div>
+{% endblock %}

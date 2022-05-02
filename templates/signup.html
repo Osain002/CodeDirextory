@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+      <head>
+            <title>The Code DireXtory</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename = 'StyleSheet.css')}}">
+      </head>
+
+      <body>
+            <h class = "title">The <span class="LangTitle">{{pg_title}}</span> DireXtory</h>
+            
+             
+            <div width = "200mm" class="logintext">
+                  <a href = "{{url_for('login')}}">Already have an account? Log in!</a><br><br>
+                  {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                              {% for msg in messages%}
+                                    <p style="color: red">{{msg}}</p>
+                              {% endfor %}
+                        {% endif %}
+                  {% endwith %}
+                  <form action = "#" method = "post">
+                        <label  for="username">
+                              Username:
+                        </label>
+                        <input style = "position:absolute; right:5px;" type="text" name="username">
+                        <br><br>
+                        <label  style = margin:12%;" for="mail">
+                              Email:
+                        </label>
+                        <input style = "position:absolute; right: 5px;" type="text" name="userMail">
+                        <br><br>
+                        <label  for="password">
+                              Password:
+                        </label>
+                        <input style = "position:absolute; right: 5px; margin-bottom: 5px;" type="password" name="password"><br>
+
+                        <input style = "margin-top: 10px;" class = "loginSubmit" name="regButton" type="submit" value = "Register">
+                  </form>
+            </div>
+
+      </body>
+
+      
+
+
+</html>
